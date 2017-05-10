@@ -6,7 +6,7 @@ public class Percolation {
     private WeightedQuickUnionUF connectedStates;
     private WeightedQuickUnionUF connectedStatesBW;
 
-    public Percolation(int n){ // create n-by-n grid, with all sites blocked
+    public Percolation(int n) { // create n-by-n grid, with all sites blocked
         if (n <= 0)  
             throw new java.lang.IllegalArgumentException();  
         this.n = n;
@@ -16,7 +16,7 @@ public class Percolation {
         connectedStatesBW = new WeightedQuickUnionUF(n * n + 1);
     }    
 
-    public void open(int row, int col){
+    public void open(int row, int col) {
         if ( row < 1 || row > n || col < 1 || col > n ) {
             throw new java.lang.IndexOutOfBoundsException();
         }
@@ -51,17 +51,17 @@ public class Percolation {
         }
     }   // open site (row, col) if it is not open already
  
-    public boolean isOpen(int row, int col){
-        if ( row < 1 || row > n || col < 1 || col > n ) {
+    public boolean isOpen(int row, int col) {
+        if (row < 1 || row > n || col < 1 || col > n) {
             throw new java.lang.IndexOutOfBoundsException();
         }
         int r = row-1;
         int c = col-1;
-        return openStates[ r * n + c];
+        return openStates[r * n + c];
     }  // is site (row, col) open?
     
-    public boolean isFull(int row, int col){
-        if ( row < 1 || row > n || col < 1 || col > n ) {
+    public boolean isFull(int row, int col) {
+        if (row < 1 || row > n || col < 1 || col > n) {
             throw new java.lang.IndexOutOfBoundsException();
         }
         int r = row-1;
@@ -69,7 +69,7 @@ public class Percolation {
         return connectedStatesBW.connected( r * n + c, n * n);
     }  // is site (row, col) full?
     
-    public boolean percolates(){
+    public boolean percolates() {
         return connectedStates.connected(n * n, n * n + 1);
     } // does the system percolates?
     
